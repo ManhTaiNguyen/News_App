@@ -349,6 +349,21 @@ class SavedNewsPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 var article = snapshot.data![index];
                 return ListTile(
+                  leading: article['urlToImage'] != null &&
+                          article['urlToImage'] != ''
+                      ? Image.network(
+                          article['urlToImage'],
+                          width: 80,
+                          height: 80,
+                          fit: BoxFit.cover,
+                        )
+                      : SizedBox(
+                          width: 80,
+                          height: 80,
+                          child: Center(
+                            child: Text('No Image'),
+                          ),
+                        ),
                   title: Text(article['title']),
                   subtitle: Text(
                       '${article['source']['name']} • ${article['publishedAt']}'),
